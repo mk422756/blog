@@ -3,18 +3,18 @@ module.exports = {
   env: {
     browser: true,
     node: true,
-    jest: true,
+    jest: true
   },
   parser: 'vue-eslint-parser',
   parserOptions: {
-    parser: '@typescript-eslint/parser',
+    parser: '@typescript-eslint/parser'
   },
   extends: [
     'eslint:recommended',
     'plugin:vue/essential',
     'plugin:vue/recommended',
     'plugin:@typescript-eslint/recommended',
-    'prettier/vue',
+    'prettier/vue'
   ],
   plugins: ['vue', '@typescript-eslint'],
   rules: {
@@ -30,9 +30,9 @@ module.exports = {
       'error',
       {
         html: {
-          void: 'always',
-        },
-      },
-    ],
-  },
-};
+          void: 'always'
+        }
+      }
+    ]
+  }
+}

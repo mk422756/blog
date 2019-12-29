@@ -27,13 +27,13 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['@/plugins/composition-api'],
   /*
    ** Nuxt.js dev-modules
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxt/typescript-build'
   ],
   /*
    ** Nuxt.js modules
@@ -55,10 +55,10 @@ export default {
           customProperties: false
         }
       }
-    },
+    }
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    // extend(config, ctx) {}
   }
 }

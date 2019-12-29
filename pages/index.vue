@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-      <li v-for="entry in entries" :key="entry">
+      <li v-for="(entry, i) in entries" :key="i">
         {{ entry.fields }}
         <img :src="entry.fields.heroImage.fields.file.url" />
       </li>
@@ -20,6 +20,7 @@ export default {
     return Promise.all([
       // fetch the owner of the blog
       client.getEntries({
+        // eslint-disable-next-line @typescript-eslint/camelcase
         content_type: process.env.CTF_BLOG_POST_TYPE_ID
       })
       // fetch all blog posts sorted by creation date
