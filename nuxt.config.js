@@ -14,7 +14,13 @@ export default {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    script: [
+      {
+        src: 'https:////cdn.embedly.com/widgets/platform.js',
+        charset: 'UTF-8'
+      }
+    ]
   },
   /*
    ** Customize the progress-bar color
@@ -47,7 +53,11 @@ export default {
     '@nuxtjs/markdownit'
   ],
   markdownit: {
-    injected: true
+    html: true,
+    injected: true,
+    preset: 'default',
+    linkify: true,
+    breaks: true
   },
   /*
    ** Build configuration
