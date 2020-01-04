@@ -12,7 +12,6 @@
     </ul>
   </div>
 </template>
-
 <script lang="ts">
 import { createClient } from '~/plugins/contentful.js'
 import { createComponent, reactive, computed, ref } from '@vue/composition-api'

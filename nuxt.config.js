@@ -43,8 +43,12 @@ export default {
     '@nuxtjs/bulma',
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    '@nuxtjs/markdownit'
   ],
+  markdownit: {
+    injected: true
+  },
   /*
    ** Build configuration
    */

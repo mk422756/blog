@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <n-link :to="id" append>
+    <n-link :to="`/posts/${id}`">
       <div class="title">{{ title }}</div>
       <img class="image" :src="image" />
       <div class="createdAt">{{ createdAt }}</div>
