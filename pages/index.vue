@@ -1,42 +1,45 @@
 <template>
   <div>
     <ul>
-      <li v-for="(entry, i) in entries" :key="i">
-        {{ entry.fields }}
-        <img :src="entry.fields.heroImage.fields.file.url" />
+      <li v-for="item in state.items" :key="item.sys.id">
+        <blog-entry
+          :id="item.sys.id"
+          :title="item.fields.title"
+          :image="item.fields.heroImage.fields.file.url"
+          :created-at="new Date(item.sys.createdAt)"
+        />
       </li>
     </ul>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { createClient } from '~/plugins/contentful.js'
+import { createComponent, reactive, computed, ref } from '@vue/composition-api'
+import BlogEntry from '~/components/molecules/BlogEntry.vue'
 
 const client = createClient()
 
-export default {
-  // `env` is available in the context object
-  asyncData({ env }) {
-    return Promise.all([
-      // fetch the owner of the blog
-      client.getEntries({
-        // eslint-disable-next-line @typescript-eslint/camelcase
-        content_type: process.env.CTF_BLOG_POST_TYPE_ID
-      })
-      // fetch all blog posts sorted by creation date
-      // client.getEntries({
-      //   content_type: env.CTF_BLOG_POST_TYPE_ID,
-      //   order: '-sys.createdAt'
-      // })
-    ])
-      .then(([entries]) => {
-        // return data that should be available
-        // in the template
-        return {
-          entries: entries.items
-        }
-      })
-      .catch(console.error)
+export default createComponent({
+  components: {
+    BlogEntry
+  },
+  setup() {
+    const state = reactive<{ items: Object[] }>({
+      items: []
+    })
+    const fetchData = async (): Promise<void> => {
+      state.items = (
+        await client.getEntries({
+          content_type: process.env.CTF_BLOG_POST_TYPE_ID
+        })
+      ).items
+    }
+    fetchData()
+
+    return {
+      state
+    }
   }
-}
+})
 </script>
