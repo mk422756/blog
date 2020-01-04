@@ -1,8 +1,19 @@
 <template>
   <div>
+    <navbar />
     <nuxt />
   </div>
 </template>
+<script lang="ts">
+import { createComponent, reactive, computed, ref } from '@vue/composition-api'
+import Navbar from '~/components/organisms/Navbar.vue'
+
+export default createComponent({
+  components: {
+    Navbar
+  }
+})
+</script>
 
 <style>
 html {
