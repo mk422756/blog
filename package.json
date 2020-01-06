@@ -18,7 +18,8 @@
     "@nuxtjs/markdownit": "^1.2.7",
     "@nuxtjs/pwa": "^3.0.0-0",
     "@vue/composition-api": "^0.3.4",
-    "contentful": "^7.11.3",
+    "firebase": "^7.6.1",
+    "mavon-editor": "^2.7.7",
     "nuxt": "^2.0.0",
     "prismjs": "^1.17.1"
   },

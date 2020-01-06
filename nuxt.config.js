@@ -33,7 +33,13 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@/plugins/composition-api', '@/plugins/prism'],
+  plugins: [
+    '@/plugins/composition-api',
+    '@/plugins/prism',
+    '@/plugins/firebase',
+    '@/plugins/auth',
+    '@/plugins/editor'
+  ],
   /*
    ** Nuxt.js dev-modules
    */

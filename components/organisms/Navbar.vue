@@ -2,11 +2,7 @@
   <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <n-link class="navbar-item" to="/">
-        <img
-          src="https://bulma.io/images/bulma-logo.png"
-          width="112"
-          height="28"
-        />
+        <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />
       </n-link>
 
       <!-- <a
@@ -19,7 +15,9 @@
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
-      </a> -->
+      </a>-->
+      <a class="navbar-item" @click="createPost">EDIT</a>
+      <n-link class="navbar-item" to="/login">LOGIN</n-link>
     </div>
 
     <!-- <div id="navbarBasicExample" class="navbar-menu">
@@ -67,10 +65,31 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>-->
   </nav>
 </template>
 <script lang="ts">
 import { createComponent } from '@vue/composition-api'
-export default createComponent({})
+import { db } from '~/plugins/firebase'
+
+export default createComponent({
+  setup(props, ctx) {
+    async function createPost() {
+      const postRef = db.collection('posts').doc()
+      await postRef.set({
+        title: '',
+        md: '',
+        html: '',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        isDraft: true,
+        createdBy: ctx.root.$store.state.user.uid
+      })
+
+      ctx.root.$router.push(`/posts/${postRef.id}/edit`)
+    }
+
+    return { createPost }
+  }
+})
 </script>
