@@ -38,7 +38,8 @@ export default {
     '@/plugins/prism',
     '@/plugins/firebase',
     '@/plugins/auth',
-    '@/plugins/editor'
+    '@/plugins/editor',
+    '@/plugins/dayjs'
   ],
   /*
    ** Nuxt.js dev-modules
