@@ -24,6 +24,7 @@
     "prismjs": "^1.17.1"
   },
   "devDependencies": {
+    "@firebase/testing": "^0.16.5",
     "@nuxt/typescript-build": "^0.5.4",
     "@nuxtjs/eslint-config": "^1.0.1",
     "@nuxtjs/eslint-module": "^1.0.0",
