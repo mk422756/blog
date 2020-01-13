@@ -21,7 +21,7 @@ import { createComponent, reactive, computed, ref } from '@vue/composition-api'
 import { auth } from '~/plugins/firebase'
 
 export default createComponent({
-  setup() {
+  setup(props, ctx) {
     const state = reactive<{ email: string; password: string; errMsg: string }>(
       {
         email: '',
@@ -41,7 +41,7 @@ export default createComponent({
           throw new Error()
         }
 
-        console.log(cred.user)
+        ctx.root.$router.push('/')
       } catch (e) {
         if (e.code === 'auth/invalid-email') {
           state.errMsg = 'メールアドレスの形式が正しくありません'

@@ -9,17 +9,28 @@
         />
       </n-link>
 
-      <a class="navbar-item" @click="createPost">新規作成</a>
-      <n-link v-if="!$store.state.user.uid" class="navbar-item" to="/login"
+      <a
+        v-if="$store.state.user.uid"
+        class="navbar-item create-post"
+        @click="createPost"
+        >新規作成</a
+      >
+      <n-link
+        v-if="!$store.state.user.uid"
+        class="navbar-item login"
+        to="/login"
         >ログイン</n-link
       >
       <p v-else class="navbar-item">ログイン中: {{ $store.state.user.uid }}</p>
+      <a v-if="$store.state.user.uid" class="navbar-item logout" @click="logout"
+        >ログアウト</a
+      >
     </div>
   </nav>
 </template>
 <script lang="ts">
 import { createComponent, reactive } from '@vue/composition-api'
-import { db } from '~/plugins/firebase'
+import { db, auth } from '~/plugins/firebase'
 
 export default createComponent({
   setup(props, ctx) {
@@ -38,7 +49,17 @@ export default createComponent({
       ctx.root.$router.push(`/posts/${postRef.id}/edit`)
     }
 
-    return { createPost }
+    async function logout() {
+      try {
+        await auth.signOut()
+        ctx.root.$store.dispatch('user/setUID', '')
+      } catch (e) {
+        console.log(e)
+        console.log(e.code, e.message)
+      }
+    }
+
+    return { createPost, logout }
   }
 })
 </script>
