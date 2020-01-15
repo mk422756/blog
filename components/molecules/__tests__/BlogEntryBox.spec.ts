@@ -27,4 +27,25 @@ describe('BlogEntry', () => {
     expect(wrapper.find('.created-at').text()).toBe(dateStr)
     expect(wrapper.find(BlogEntryImage)).toBeTruthy()
   })
+
+  it('下書き記事の場合はクラスと文字が追加される', () => {
+    const dateStr = '2013/01/23 12:34:56'
+    const date = new Date(dateStr)
+    const id = 'aaaaa'
+    const title = 'test title'
+    const image = 'image'
+    const wrapper = shallowMount(BlogEntryBox, {
+      localVue,
+      propsData: {
+        id: id,
+        title: title,
+        image: image,
+        createdAt: date,
+        isDraft: true
+      },
+      stubs: ['n-link']
+    })
+    expect(wrapper.find('.is-draft').exists()).toBe(true)
+    expect(wrapper.find('.draft').text()).toContain('下書き')
+  })
 })

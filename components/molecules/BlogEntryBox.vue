@@ -1,8 +1,11 @@
 <template>
-  <div class="wrapper box">
+  <div class="wrapper box" :class="{ 'is-draft': isDraft }">
     <n-link :to="`/posts/${id}`">
       <blog-entry-image :image="image" class="image" />
-      <h2 class="title">{{ title }}</h2>
+      <h2 class="title">
+        <span v-if="isDraft" class="draft has-text-danger">★下書き </span
+        >{{ title }}
+      </h2>
       <p class="created-at">
         <time>{{ state.displayCreateAt }}</time>
       </p>
@@ -34,6 +37,10 @@ export default createComponent({
     createdAt: {
       type: Date,
       require: true
+    },
+    isDraft: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, ctx) {
@@ -82,5 +89,9 @@ a:active {
   text-decoration: underline;
   box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.3),
     0 0px 0 1px rgba(10, 10, 10, 0.02);
+}
+
+.is-draft {
+  background-color: aliceblue;
 }
 </style>

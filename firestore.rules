@@ -14,7 +14,7 @@ service cloud.firestore {
     match /posts/{post} {
       allow update, delete: if resource.data.createdBy == request.auth.uid;
       allow create: if request.auth.uid != null;
-      allow read: if true;
+      allow read: if resource.data.isDraft == false || resource.data.createdBy == request.auth.uid;
     }
   }
 }

@@ -22,6 +22,12 @@
         >ログイン</n-link
       >
       <p v-else class="navbar-item">ログイン中: {{ $store.state.user.uid }}</p>
+      <n-link
+        v-if="$store.state.user.uid"
+        class="navbar-item logout"
+        to="myposts"
+        >マイ記事一覧</n-link
+      >
       <a v-if="$store.state.user.uid" class="navbar-item logout" @click="logout"
         >ログアウト</a
       >
