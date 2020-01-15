@@ -12,7 +12,7 @@ service cloud.firestore {
     // your app will lose access to your Firestore database
 
     match /posts/{post} {
-      allow update: if request.resource.data.createdBy == request.auth.uid;
+      allow update, delete: if resource.data.createdBy == request.auth.uid;
       allow create: if request.auth.uid != null;
       allow read: if true;
     }

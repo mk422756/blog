@@ -40,7 +40,7 @@ describe('Firestore Security Rules', () => {
     )
   })
 
-  it('postsの上書きは作成ユーザーのみ可能', async () => {
+  it('postsの上書きと削除は作成ユーザーのみ可能', async () => {
     firestore1
       .collection('posts')
       .doc('doc1')
@@ -57,6 +57,19 @@ describe('Firestore Security Rules', () => {
         .collection('posts')
         .doc('doc1')
         .update({ test: 'test' })
+    )
+    await firebase.assertFails(
+      firestore2
+        .collection('posts')
+        .doc('doc1')
+        .delete()
+    )
+
+    await firebase.assertSucceeds(
+      firestore1
+        .collection('posts')
+        .doc('doc1')
+        .delete()
     )
   })
 
