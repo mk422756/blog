@@ -103,7 +103,9 @@ export default createComponent({
 
       if (post.exists) {
         const data = post.data()
+        state.title = data.title
         state.md = data.md
+        state.html = state.html
       }
     }
     getPost()

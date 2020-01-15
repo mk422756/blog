@@ -2,9 +2,13 @@
   <div class="columns is-centered wrapper">
     <div class="column is-four-fifths">
       <div class="box">
-        <p v-if="state.data && state.data.createdAt" class="created-at">
+        <div v-if="state.data && state.data.createdAt" class="created-at">
           <time>{{ displayDate(state.data.createdAt.toDate()) }}</time>
-        </p>
+          <span class="is-pulled-right" v-if="$store.state.user.uid">
+            <n-link to="edit" class="fas fa-edit" append></n-link>
+          </span>
+        </div>
+
         <h1 class="title">{{ state.data.title }}</h1>
         <div class="main" v-if="state.data.html" v-html="state.data.html"></div>
       </div>
