@@ -20,12 +20,6 @@ export default {
         rel: 'stylesheet',
         href: 'https://use.fontawesome.com/releases/v5.6.1/css/all.css'
       }
-    ],
-    script: [
-      {
-        src: 'https:////cdn.embedly.com/widgets/platform.js',
-        charset: 'UTF-8'
-      }
     ]
   },
   /*
