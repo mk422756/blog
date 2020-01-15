@@ -111,6 +111,9 @@ export default createComponent({
     getPost()
 
     async function draft() {
+      if (!window.confirm('下書きで保存します')) {
+        return
+      }
       await db
         .collection('posts')
         .doc(ctx.root.$route.params.id)
@@ -124,6 +127,9 @@ export default createComponent({
     }
 
     async function publish() {
+      if (!window.confirm('公開で保存します')) {
+        return
+      }
       await db
         .collection('posts')
         .doc(ctx.root.$route.params.id)
@@ -137,6 +143,9 @@ export default createComponent({
     }
 
     async function del() {
+      if (!window.confirm('削除します')) {
+        return
+      }
       await db
         .collection('posts')
         .doc(ctx.root.$route.params.id)
