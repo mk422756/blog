@@ -3,7 +3,7 @@
     <div class="column is-four-fifths">
       <div class="box">
         <div v-if="state.data && state.data.createdAt" class="created-at">
-          <time>{{ displayDate(state.data.createdAt.toDate()) }}</time>
+          <time class="created-at">{{ displayDate(state.data.createdAt.toDate()) }}</time>
           <span class="is-pulled-right" v-if="$store.state.user.uid">
             <n-link to="edit" class="fas fa-edit" append></n-link>
           </span>
@@ -70,19 +70,24 @@ export default createComponent({
 }
 
 .created-at {
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .title {
   margin-top: 5px;
-  font-size: 22px;
+  font-size: 32px;
 }
 .main >>> h1 {
   font-size: 2rem;
+  margin: 15px 0;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
 }
 
-.main >>> strong {
-  font-size: 2rem;
+.main >>> p {
+  font-size: 18px;
+  line-height: 36px;
+  margin: 36px 0;
 }
 
 .main >>> pre {
