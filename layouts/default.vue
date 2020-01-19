@@ -2,11 +2,11 @@
   <div>
     <navbar />
     <div class="columns">
-      <div class="column is-three-quarters">
+      <div class="column is-two-thirds">
         <nuxt />
       </div>
       <div class="column">
-        sidebar
+        <sidebar class="sidebar" />
       </div>
     </div>
   </div>
@@ -14,10 +14,12 @@
 <script lang="ts">
 import { createComponent, reactive, computed, ref } from '@vue/composition-api'
 import Navbar from '~/components/organisms/Navbar.vue'
+import Sidebar from '~/components/organisms/Sidebar.vue'
 
 export default createComponent({
   components: {
-    Navbar
+    Navbar,
+    Sidebar
   }
 })
 </script>
@@ -44,5 +46,9 @@ body {
 *:after {
   box-sizing: border-box;
   margin: 0;
+}
+
+.sidebar {
+  margin: 30px 10px;
 }
 </style>
