@@ -2,7 +2,7 @@
   <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <n-link class="navbar-item" to="/">
-        <img src="~/assets/images/logo.png" width="112" height="28" />
+        <img src="~/assets/images/logo.png" width="112" height="28" alt="テクニカルパレード" />
       </n-link>
 
       <a v-if="$store.state.user.uid" class="navbar-item create-post" @click="createPost">新規作成</a>

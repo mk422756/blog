@@ -1,7 +1,5 @@
 <template>
-  <div class="wrapper">
-    <top-blog-entry-boxes class="entries" />
-  </div>
+  <top-blog-entry-boxes class="entries" />
 </template>
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
@@ -13,8 +11,4 @@ export default defineComponent({
   }
 })
 </script>
-<style scoped>
-.entries {
-  margin: 20px 10px;
-}
-</style>
+

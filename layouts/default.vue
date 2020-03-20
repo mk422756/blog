@@ -1,12 +1,16 @@
 <template>
   <div>
     <navbar />
-    <div class="columns">
-      <div class="column is-two-thirds">
-        <nuxt />
-      </div>
-      <div class="column">
-        <sidebar class="sidebar" />
+    <div class="section">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-two-thirds">
+            <nuxt />
+          </div>
+          <div class="column">
+            <sidebar class="sidebar" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -46,9 +50,5 @@ body {
 *:after {
   box-sizing: border-box;
   margin: 0;
-}
-
-.sidebar {
-  margin: 30px 10px;
 }
 </style>

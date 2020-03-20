@@ -3,10 +3,7 @@
     <div>
       <p class="profile">プロフィール</p>
       <figure class="image is-64x64">
-        <img
-          class="is-rounded"
-          src="https://bulma.io/images/placeholders/64x64.png"
-        />
+        <img class="is-rounded" src="https://bulma.io/images/placeholders/64x64.png" />
       </figure>
       <p class="name">
         <strong>{{ state.name }}</strong>
