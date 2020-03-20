@@ -12,11 +12,11 @@
   </div>
 </template>
 <script lang="ts">
-import { createComponent, reactive, computed, ref } from '@vue/composition-api'
+import { defineComponent, reactive, computed, ref } from '@vue/composition-api'
 import Navbar from '~/components/organisms/Navbar.vue'
 import Sidebar from '~/components/organisms/Sidebar.vue'
 
-export default createComponent({
+export default defineComponent({
   components: {
     Navbar,
     Sidebar

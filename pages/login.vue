@@ -17,10 +17,10 @@
   </div>
 </template>
 <script lang="ts">
-import { createComponent, reactive, computed, ref } from '@vue/composition-api'
+import { defineComponent, reactive, computed, ref } from '@vue/composition-api'
 import { auth } from '~/plugins/firebase'
 
-export default createComponent({
+export default defineComponent({
   setup(props, ctx) {
     const state = reactive<{ email: string; password: string; errMsg: string }>(
       {

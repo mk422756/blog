@@ -3,7 +3,9 @@
     <div class="column is-four-fifths">
       <div class="box">
         <div v-if="state.data && state.data.createdAt" class="created-at">
-          <time class="created-at">{{ displayDate(state.data.createdAt.toDate()) }}</time>
+          <time class="created-at">{{
+            displayDate(state.data.createdAt.toDate())
+          }}</time>
           <span class="is-pulled-right" v-if="$store.state.user.uid">
             <n-link to="edit" class="fas fa-edit" append></n-link>
           </span>
@@ -17,7 +19,7 @@
 </template>
 <script lang="ts">
 import {
-  createComponent,
+  defineComponent,
   reactive,
   watch,
   computed
@@ -26,7 +28,7 @@ import Prism from '~/plugins/prism'
 import { db } from '~/plugins/firebase'
 import dayjs from 'dayjs'
 
-export default createComponent({
+export default defineComponent({
   setup(props, ctx) {
     const state = reactive<{ data: any }>({
       data: {}

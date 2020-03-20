@@ -11,11 +11,11 @@
   </div>
 </template>
 <script lang="ts">
-import { createComponent, reactive, computed, ref } from '@vue/composition-api'
+import { defineComponent, reactive, computed, ref } from '@vue/composition-api'
 import BlogEntryBox from '~/components/molecules/BlogEntryBox.vue'
 import { db } from '~/plugins/firebase'
 
-export default createComponent({
+export default defineComponent({
   components: {
     BlogEntryBox
   },

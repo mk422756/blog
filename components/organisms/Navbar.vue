@@ -35,10 +35,10 @@
   </nav>
 </template>
 <script lang="ts">
-import { createComponent, reactive } from '@vue/composition-api'
+import { defineComponent, reactive } from '@vue/composition-api'
 import { db, auth } from '~/plugins/firebase'
 
-export default createComponent({
+export default defineComponent({
   setup(props, ctx) {
     async function createPost() {
       const postRef = db.collection('posts').doc()

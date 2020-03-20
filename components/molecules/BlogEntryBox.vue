@@ -13,11 +13,11 @@
   </div>
 </template>
 <script lang="ts">
-import { createComponent, reactive, computed, ref } from '@vue/composition-api'
+import { defineComponent, reactive, computed, ref } from '@vue/composition-api'
 import BlogEntryImage from '~/components/atoms/BlogEntryImage.vue'
 import dayjs from 'dayjs'
 
-export default createComponent({
+export default defineComponent({
   components: {
     BlogEntryImage
   },

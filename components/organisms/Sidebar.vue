@@ -3,19 +3,22 @@
     <div>
       <p class="profile">プロフィール</p>
       <figure class="image is-64x64">
-        <img class="is-rounded" src="https://bulma.io/images/placeholders/64x64.png" />
+        <img
+          class="is-rounded"
+          src="https://bulma.io/images/placeholders/64x64.png"
+        />
       </figure>
       <p class="name">
-        <strong>{{state.name}}</strong>
+        <strong>{{ state.name }}</strong>
       </p>
-      <p class="description">{{state.description}}</p>
+      <p class="description">{{ state.description }}</p>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { createComponent, reactive } from '@vue/composition-api'
+import { defineComponent, reactive } from '@vue/composition-api'
 
-export default createComponent({
+export default defineComponent({
   setup() {
     const state = reactive({
       name: process.env.USER_NAME,

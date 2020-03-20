@@ -26,11 +26,11 @@
   </div>
 </template>
 <script>
-import { createComponent, reactive, computed, ref } from '@vue/composition-api'
+import { defineComponent, reactive, computed, ref } from '@vue/composition-api'
 import { storage, db } from '~/plugins/firebase'
 import { mavonEditor } from 'mavon-editor'
 
-export default createComponent({
+export default defineComponent({
   setup(props, ctx) {
     const option = {
       bold: true,

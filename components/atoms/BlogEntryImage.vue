@@ -2,9 +2,9 @@
   <img class="image" :src="displayImage" />
 </template>
 <script lang="ts">
-import { createComponent, reactive, computed, ref } from '@vue/composition-api'
+import { defineComponent, reactive, computed, ref } from '@vue/composition-api'
 
-export default createComponent({
+export default defineComponent({
   props: {
     image: {
       type: String,
