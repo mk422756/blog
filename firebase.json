@@ -8,12 +8,15 @@
     "source": "functions"
   },
   "hosting": {
-    "public": "dist",
+    "public": "public",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
         "source": "**",
-        "destination": "/index.html"
+        "run": {
+          "serviceId": "blog",
+          "region": "asia-northeast1"
+        }
       }
     ]
   },

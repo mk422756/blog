@@ -67,6 +67,12 @@ export default {
     '@nuxtjs/dotenv',
     '@nuxtjs/markdownit',
   ],
+  pwa: {
+    manifest: {
+      name: process.env.SITE_NAME,
+      lang: 'ja',
+    },
+  },
   markdownit: {
     html: true,
     injected: true,
