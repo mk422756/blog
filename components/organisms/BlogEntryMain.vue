@@ -5,7 +5,7 @@
         <div v-if="state.data && state.data.createdAt" class="created-at">
           <time class="created-at">
             {{
-            displayDate(state.data.createdAt.toDate())
+            displayDate(state.data.createdAt)
             }}
           </time>
           <span class="is-pulled-right" v-if="$store.state.user.uid">
@@ -14,7 +14,7 @@
         </div>
 
         <h1 class="title">{{ state.data.title }}</h1>
-        <div class="main" v-if="state.data.html" v-html="state.data.html"></div>
+        <div class="main" v-if="state.data.htmlText" v-html="state.data.htmlText"></div>
       </div>
     </div>
   </div>
@@ -27,8 +27,8 @@ import {
   computed
 } from '@vue/composition-api'
 import Prism from '~/plugins/prism'
-import { db } from '~/plugins/firebase'
 import dayjs from 'dayjs'
+import PostApplicationService from '~/application/posts/postApplicationService'
 
 export default defineComponent({
   setup(props, ctx) {
@@ -40,15 +40,10 @@ export default defineComponent({
       return dayjs(date).format('YYYY-MM-DD')
     }
 
-    const fetchData = async (): Promise<void> => {
-      const post = await db
-        .collection('posts')
-        .doc(ctx.root.$route.params.id)
-        .get()
+    const service = new PostApplicationService()
 
-      if (post.exists) {
-        state.data = post.data()
-      }
+    const fetchData = async (): Promise<void> => {
+      state.data = await service.getById(ctx.root.$route.params.id)
     }
     fetchData()
 

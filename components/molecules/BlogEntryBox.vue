@@ -3,8 +3,8 @@
     <n-link :to="`/posts/${id}`">
       <blog-entry-image :image="image" class="image" />
       <h2 class="title">
-        <span v-if="isDraft" class="draft has-text-danger">★下書き </span
-        >{{ title }}
+        <span v-if="isDraft" class="draft has-text-danger">★下書き</span>
+        {{ title }}
       </h2>
       <p class="created-at">
         <time>{{ state.displayCreateAt }}</time>
@@ -16,6 +16,14 @@
 import { defineComponent, reactive, computed, ref } from '@vue/composition-api'
 import BlogEntryImage from '~/components/atoms/BlogEntryImage.vue'
 import dayjs from 'dayjs'
+
+interface Props {
+  id: String
+  title: String
+  image: String
+  createdAt: Date
+  isDraft: boolean
+}
 
 export default defineComponent({
   components: {
@@ -43,7 +51,7 @@ export default defineComponent({
       default: false
     }
   },
-  setup(props, ctx) {
+  setup(props: Props, ctx) {
     const state = reactive({
       entries: [],
       displayCreateAt: computed(() =>

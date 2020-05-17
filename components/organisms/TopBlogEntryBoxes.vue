@@ -5,7 +5,7 @@
         :id="post.id"
         :title="post.title"
         :image="post.image"
-        :created-at="post.createdAt.toDate()"
+        :created-at="post.createdAt"
       />
     </div>
   </div>
@@ -13,7 +13,7 @@
 <script lang="ts">
 import { defineComponent, reactive, computed, ref } from '@vue/composition-api'
 import BlogEntryBox from '~/components/molecules/BlogEntryBox.vue'
-import { db } from '~/plugins/firebase'
+import PostApplicationService from '~/application/posts/postApplicationService'
 
 export default defineComponent({
   components: {
@@ -23,17 +23,12 @@ export default defineComponent({
     const state = reactive<{ posts: any[] }>({
       posts: []
     })
-    const fetchData = async (): Promise<void> => {
-      const posts = await db
-        .collection('posts')
-        .where('isDraft', '==', false)
-        .get()
-      posts.forEach((post) => {
-        const data = post.data()
-        data.id = post.id
-        state.posts.push(data)
-      })
+    const service = new PostApplicationService()
+
+    const fetchData = async () => {
+      state.posts = await service.getAll()
     }
+
     fetchData()
 
     return {

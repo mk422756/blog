@@ -27,8 +27,8 @@
 </template>
 <script>
 import { defineComponent, reactive, computed, ref } from '@vue/composition-api'
-import { storage, db } from '~/plugins/firebase'
 import { mavonEditor } from 'mavon-editor'
+import PostApplicationService from '~/application/posts/postApplicationService'
 
 export default defineComponent({
   setup(props, ctx) {
@@ -74,15 +74,14 @@ export default defineComponent({
       html: ''
     })
 
-    async function imgAdd(pos, file) {
-      const storageRef = storage.ref()
+    const postService = new PostApplicationService()
 
-      const mountainsRef = storageRef.child(
-        `${ctx.root.$store.state.user.uid}/${ctx.root.$route.params.id}/${file.name}`
+    async function imgAdd(pos, file) {
+      const url = await postService.imageUpload(
+        `${ctx.root.$store.state.user.uid}/${ctx.root.$route.params.id}/${file.name}`,
+        file
       )
-      const ret = await mountainsRef.put(file)
-      const url = await mountainsRef.getDownloadURL()
-      ctx.refs.md.$img2Url(pos, url)
+      ctx.refs.md.$img2Url(pos, url.value)
     }
 
     function change(value, htmlval) {
@@ -90,68 +89,56 @@ export default defineComponent({
       state.html = htmlval
     }
 
-    async function imgDel(pos, file) {
-      console.log(pos)
-      console.log(file)
+    async function imgDel(array) {
+      // const url = array[0]
+      const file = array[1]
+      await postService.imageDelete(
+        `${ctx.root.$store.state.user.uid}/${ctx.root.$route.params.id}/${file.name}`
+      )
     }
 
     async function getPost() {
-      const post = await db
-        .collection('posts')
-        .doc(ctx.root.$route.params.id)
-        .get()
-
-      if (post.exists) {
-        const data = post.data()
-        state.title = data.title
-        state.md = data.md
-        state.html = state.html
-      }
+      const post = await postService.getById(ctx.root.$route.params.id)
+      state.title = post.title
+      state.md = post.markdownText
+      state.html = post.html
     }
+
     getPost()
 
     async function draft() {
       if (!window.confirm('下書きで保存します')) {
         return
       }
-      await db
-        .collection('posts')
-        .doc(ctx.root.$route.params.id)
-        .update({
-          title: state.title,
-          md: state.md,
-          html: state.html,
-          updatedAt: new Date(),
-          isDraft: true
-        })
+
+      await postService.save(
+        ctx.root.$route.params.id,
+        state.title,
+        state.html,
+        state.md,
+        true
+      )
     }
 
     async function publish() {
       if (!window.confirm('公開で保存します')) {
         return
       }
-      await db
-        .collection('posts')
-        .doc(ctx.root.$route.params.id)
-        .update({
-          title: state.title,
-          md: state.md,
-          html: state.html,
-          updatedAt: new Date(),
-          isDraft: false
-        })
+      await postService.save(
+        ctx.root.$route.params.id,
+        state.title,
+        state.html,
+        state.md,
+        false
+      )
     }
 
     async function del() {
       if (!window.confirm('削除します')) {
         return
       }
-      await db
-        .collection('posts')
-        .doc(ctx.root.$route.params.id)
-        .delete()
-
-      ctx.root.$router.push('/')
+      await postService.delete(ctx.root.$route.params.id)
+      ctx.root.$router.push('/myposts')
     }
 
     return {
