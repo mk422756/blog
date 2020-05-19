@@ -5,6 +5,7 @@ import PostTitle from '~/domain/models/posts/postTitle'
 import PostHtmlText from '~/domain/models/posts/postHtmlText'
 import PostMarkdownText from '~/domain/models/posts/postMarkdownText'
 import PostIsDraft from '~/domain/models/posts/postIsDraft'
+import ImageUrl from '~/domain/models/images/imageUrl'
 import PostRepository from '~/domain/models/posts/postRepository'
 import { db } from '~/plugins/firebase'
 
@@ -25,7 +26,8 @@ export default class FirestorePostRepository implements PostRepository {
       new UserId(data?.createdBy),
       data?.createdAt.toDate(),
       data?.updatedAt.toDate(),
-      new PostIsDraft(data?.isDraft)
+      new PostIsDraft(data?.isDraft),
+      new ImageUrl(data?.topImage)
     )
   }
 
@@ -83,7 +85,8 @@ export default class FirestorePostRepository implements PostRepository {
         md: post.markdownText.value,
         html: post.htmlText.value,
         updatedAt: new Date(),
-        isDraft: post.isDraft.value
+        isDraft: post.isDraft.value,
+        topImage: post.topImage.value
       })
     } else {
       console.log('post create new')
@@ -94,7 +97,8 @@ export default class FirestorePostRepository implements PostRepository {
         createdBy: post.createdBy.value,
         createdAt: new Date(),
         updatedAt: new Date(),
-        isDraft: post.isDraft.value
+        isDraft: post.isDraft.value,
+        topImage: post.topImage.value
       })
     }
   }

@@ -84,8 +84,8 @@ a:active {
 
 .image {
   margin: 0 auto;
-  height: 170px;
-  width: 250px;
+  height: 160px;
+  width: 230px;
   object-fit: cover;
 }
 

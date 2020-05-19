@@ -35,7 +35,8 @@ export default class PostApplicationService {
       createdBy: post.createdBy.value,
       createdAt: post.createdAt,
       updatedAt: post.updatedAt,
-      isDraft: post.isDraft.value
+      isDraft: post.isDraft.value,
+      topImage: post.topImage.value
     }
   }
 
@@ -83,22 +84,34 @@ export default class PostApplicationService {
       new UserId(createdBy),
       new Date(),
       new Date(),
-      new PostIsDraft(true)
+      new PostIsDraft(true),
+      new ImageUrl('')
     )
     await this.postRepository.Save(post)
     return post
   }
 
   async save(
+    userId: string,
     id: string,
     title: string,
     htmlText: string,
     markdownText: string,
-    isDraft: boolean
+    isDraft: boolean,
+    topImage: File
   ): Promise<Post> {
     const post = await this.postRepository.Find(new PostId(id))
     if (post === null) {
       throw new Error('post not found')
+    }
+
+    if (!post.isAuthor(new UserId(userId))) {
+      throw new Error('user is invalid')
+    }
+
+    if (topImage) {
+      const url = await this.imageUpload(`${userId}/${id}/main-image`, topImage)
+      post.changeTopImage(url)
     }
 
     post.changeTitle(new PostTitle(title))

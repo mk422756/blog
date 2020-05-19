@@ -1,5 +1,7 @@
 <template>
-  <img class="image" :src="displayImage" />
+  <div>
+    <img class="image" :src="displayImage" />
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent, reactive, computed, ref } from '@vue/composition-api'
@@ -22,3 +24,10 @@ export default defineComponent({
   }
 })
 </script>
+<style scoped>
+img {
+  object-fit: contain;
+  max-height: 100%;
+  max-width: 100%;
+}
+</style>

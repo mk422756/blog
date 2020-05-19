@@ -4,6 +4,8 @@ import PostTitle from '~/domain/models/posts/postTitle'
 import PostHtmlText from '~/domain/models/posts/postHtmlText'
 import PostMarkdownText from '~/domain/models/posts/postMarkdownText'
 import PostIsDraft from '~/domain/models/posts/postIsDraft'
+import ImageUrl from '~/domain/models/images/imageUrl'
+import imageUrl from '~/domain/models/images/imageUrl'
 
 export default class Post {
   private _id: PostId
@@ -14,6 +16,7 @@ export default class Post {
   private _createdAt: Date
   private _updatedAt: Date
   private _isDraft: PostIsDraft
+  private _topImage: ImageUrl
 
   constructor(
     id: PostId,
@@ -23,7 +26,8 @@ export default class Post {
     createdBy: UserId,
     createdAt: Date,
     updatedAt: Date,
-    isDraft: PostIsDraft
+    isDraft: PostIsDraft,
+    topImage: ImageUrl
   ) {
     this._id = id
     this._title = title
@@ -33,6 +37,7 @@ export default class Post {
     this._createdAt = createdAt
     this._updatedAt = updatedAt
     this._isDraft = isDraft
+    this._topImage = topImage
   }
 
   changeTitle(title: PostTitle) {
@@ -52,6 +57,14 @@ export default class Post {
 
   changeIsDraft(isDraft: PostIsDraft) {
     this._isDraft = isDraft
+  }
+
+  changeTopImage(topImage: ImageUrl) {
+    this._topImage = topImage
+  }
+
+  isAuthor(createdBy: UserId): boolean {
+    return createdBy.value === this._createdBy.value
   }
 
   get id(): PostId {
@@ -84,5 +97,9 @@ export default class Post {
 
   get isDraft(): PostIsDraft {
     return this._isDraft
+  }
+
+  get topImage(): ImageUrl {
+    return this._topImage
   }
 }

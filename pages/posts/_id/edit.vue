@@ -6,6 +6,27 @@
         <button class="button is-primary" @click="publish">公開</button>
         <button class="button is-danger" @click="del">削除</button>
       </div>
+      <div class="file">
+        <label class="file-label">
+          <input
+            class="file-input"
+            type="file"
+            name="resume"
+            @change="onFileChange"
+          />
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label" v-if="state.mainImage">
+              {{ state.mainImage.name }}
+            </span>
+            <span class="file-label" v-else>
+              Choose a file…
+            </span>
+          </span>
+        </label>
+      </div>
       <div class="field">
         <label class="label">タイトル</label>
         <div class="control">
@@ -71,7 +92,8 @@ export default defineComponent({
     const state = reactive({
       title: '',
       md: '',
-      html: ''
+      html: '',
+      mainImage: null
     })
 
     const postService = new PostApplicationService()
@@ -112,11 +134,13 @@ export default defineComponent({
       }
 
       await postService.save(
+        ctx.root.$store.state.user.uid,
         ctx.root.$route.params.id,
         state.title,
         state.html,
         state.md,
-        true
+        true,
+        state.mainImage
       )
     }
 
@@ -125,11 +149,13 @@ export default defineComponent({
         return
       }
       await postService.save(
+        ctx.root.$store.state.user.uid,
         ctx.root.$route.params.id,
         state.title,
         state.html,
         state.md,
-        false
+        false,
+        state.mainImage
       )
     }
 
@@ -141,6 +167,23 @@ export default defineComponent({
       ctx.root.$router.push('/myposts')
     }
 
+    function onFileChange(e) {
+      const files = e.target.files || e.dataTransfer.files
+      console.log(files[0].name)
+      state.mainImage = files[0]
+    }
+    // アップロードした画像を表示
+    // function createImage(file) {
+    //   const reader = new FileReader()
+    //   reader.onload = (e) => {
+    //     this.uploadedImage = e.target.result
+    //   }
+    //   reader.readAsDataURL(file)
+    // }
+    // function remove() {
+    //   this.uploadedImage = false
+    // }
+
     return {
       option,
       state,
@@ -149,7 +192,8 @@ export default defineComponent({
       draft,
       publish,
       del,
-      change
+      change,
+      onFileChange
     }
   }
 })

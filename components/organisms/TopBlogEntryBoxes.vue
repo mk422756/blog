@@ -4,7 +4,7 @@
       <blog-entry-box
         :id="post.id"
         :title="post.title"
-        :image="post.image"
+        :image="post.topImage"
         :created-at="post.createdAt"
       />
     </div>

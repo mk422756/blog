@@ -4,7 +4,7 @@
       <blog-entry-box
         :id="post.id"
         :title="post.title"
-        :image="post.image"
+        :image="post.topImage"
         :is-draft="post.isDraft"
         :created-at="post.createdAt"
       />

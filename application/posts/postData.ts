@@ -7,4 +7,5 @@ export default interface PostData {
   createdAt: Date
   updatedAt: Date
   isDraft: Boolean
+  topImage: string
 }
