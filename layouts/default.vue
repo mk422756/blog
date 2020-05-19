@@ -33,6 +33,7 @@ html {
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
     'Hiragino Kaku Gothic ProN', YuGothic, 'Yu Gothic', Verdana, Meiryo,
     sans-serif;
+  color: #333;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;

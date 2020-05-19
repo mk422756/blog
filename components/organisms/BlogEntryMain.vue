@@ -73,7 +73,7 @@ export default defineComponent({
 </script>
 <style scoped>
 .created-at {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .title {
@@ -112,8 +112,8 @@ export default defineComponent({
 }
 
 .main >>> p {
-  line-height: 1.9rem;
-  margin: 1.3rem 0;
+  line-height: 1.9;
+  margin: 24px 0;
   word-break: break-all;
 }
 
