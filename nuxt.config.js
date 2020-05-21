@@ -14,6 +14,19 @@ export default {
         hid: 'description',
         name: 'description',
         content: process.env.SITE_DESCRIPTION || ''
+      },
+      {
+        hid: 'og:site_name',
+        property: 'og:site_name',
+        content: process.env.SITE_NAME
+      },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
+      { hid: 'og:url', property: 'og:url', content: 'https://k422756.com' },
+      { hid: 'og:title', property: 'og:title', content: process.env.SITE_NAME },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content: process.env.SITE_DESCRIPTION
       }
     ],
     link: [
