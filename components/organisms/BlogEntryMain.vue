@@ -3,26 +3,16 @@
     <div class="column">
       <div class="box">
         <div v-if="state.data && state.data.createdAt" class="created-at">
-          <time class="created-at">
-            {{ displayDate(state.data.createdAt) }}
-          </time>
+          <time class="created-at">{{ displayDate(state.data.createdAt) }}</time>
           <span class="is-pulled-right" v-if="$store.state.user.uid">
             <n-link to="edit" class="fas fa-edit" append></n-link>
           </span>
         </div>
         <div v-if="state.data && state.data.topImage" class="top-image-box">
-          <img
-            alt="メインイメージ"
-            :src="state.data.topImage"
-            class="top-image"
-          />
+          <img alt="メインイメージ" :src="state.data.topImage" class="top-image" />
         </div>
         <h1 class="title">{{ state.data.title }}</h1>
-        <div
-          class="main"
-          v-if="state.data.htmlText"
-          v-html="state.data.htmlText"
-        ></div>
+        <div class="main" v-if="state.data.htmlText" v-html="state.data.htmlText"></div>
       </div>
     </div>
   </div>
@@ -111,6 +101,12 @@ export default defineComponent({
   font-weight: bold;
 }
 
+.main >>> h4 {
+  font-size: 1.15rem;
+  margin: 1.4rem 0;
+  font-weight: bold;
+}
+
 .main >>> p {
   line-height: 1.9;
   margin: 24px 0;
@@ -133,8 +129,7 @@ export default defineComponent({
 }
 
 .main >>> ul {
-  border: solid 2px #ffb03f;
-  padding: 0.5em 1em 0.5em 2.3em;
+  padding: 0.3em 0.8em 0.3em 2.1em;
   position: relative;
 }
 
