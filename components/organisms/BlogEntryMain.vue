@@ -3,16 +3,26 @@
     <div class="column">
       <div class="box">
         <div v-if="state.data && state.data.createdAt" class="created-at">
-          <time class="created-at">{{ displayDate(state.data.createdAt) }}</time>
+          <time class="created-at">{{
+            displayDate(state.data.createdAt)
+          }}</time>
           <span class="is-pulled-right" v-if="$store.state.user.uid">
             <n-link to="edit" class="fas fa-edit" append></n-link>
           </span>
         </div>
         <div v-if="state.data && state.data.topImage" class="top-image-box">
-          <img alt="メインイメージ" :src="state.data.topImage" class="top-image" />
+          <img
+            alt="メインイメージ"
+            :src="state.data.topImage"
+            class="top-image"
+          />
         </div>
         <h1 class="title">{{ state.data.title }}</h1>
-        <div class="main" v-if="state.data.htmlText" v-html="state.data.htmlText"></div>
+        <div
+          class="main"
+          v-if="state.data.htmlText"
+          v-html="state.data.htmlText"
+        ></div>
       </div>
     </div>
   </div>
@@ -23,7 +33,7 @@ import {
   reactive,
   watch,
   computed
-} from '@vue/composition-api'
+} from 'nuxt-composition-api'
 import Prism from '~/plugins/prism'
 import dayjs from 'dayjs'
 import PostApplicationService from '~/application/posts/postApplicationService'

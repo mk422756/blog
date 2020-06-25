@@ -16,7 +16,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, computed, ref } from '@vue/composition-api'
+import { defineComponent, reactive, computed, ref } from 'nuxt-composition-api'
 import Navbar from '~/components/organisms/Navbar.vue'
 import Sidebar from '~/components/organisms/Sidebar.vue'
 

@@ -12,7 +12,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, computed, ref } from '@vue/composition-api'
+import { defineComponent, reactive, computed, ref } from 'nuxt-composition-api'
 import BlogEntryBox from '~/components/molecules/BlogEntryBox.vue'
 import PostApplicationService from '~/application/posts/postApplicationService'
 

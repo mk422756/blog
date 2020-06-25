@@ -47,7 +47,7 @@
   </div>
 </template>
 <script>
-import { defineComponent, reactive, computed, ref } from '@vue/composition-api'
+import { defineComponent, reactive, computed, ref } from 'nuxt-composition-api'
 import { mavonEditor } from 'mavon-editor'
 import PostApplicationService from '~/application/posts/postApplicationService'
 
